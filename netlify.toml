@@ -1,0 +1,4 @@
+[build]
+base = "reactor/"
+publish = "reactor/build/"
+command = "npm run build"
