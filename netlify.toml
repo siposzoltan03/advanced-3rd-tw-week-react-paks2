@@ -1,4 +1,7 @@
 [build]
-base = "reactor/"
-publish = "reactor/build/"
-command = "npm run build"
+  command = "npm run build"
+  publish="build"
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
