@@ -1,20 +1,18 @@
 import React, { useEffect, useContext } from "react";
 
-import CityContext from "../contexts/CityContext";
-import getCity from "../utility/GetData";
+import { CityContext } from "../contexts/CityContext";
+import { getCity } from "../utility/GetData";
 
 function SearchBar() {
   const { city1, city2 } = useContext(CityContext);
   const [cityOne, setCityOne] = city1;
   const [cityTwo, setCityTwo] = city2;
+  const city1Url = "https://api.teleport.org/api/cities/geonameid%3A5391959/";
+  const city2Url = "https://api.teleport.org/api/cities/geonameid%3A5391959/";
 
   useEffect(() => {
-    getCity(
-      "https://api.teleport.org/api/cities/geonameid%3A5391959/"
-    ).then(data => setCityOne(data));
-    getCity(
-      "https://api.teleport.org/api/cities/geonameid%3A5391959/"
-    ).then(data => setCityTwo(data));
+    getCity(city1Url).then(data => setCityOne(data));
+    getCity(city2Url).then(data => setCityTwo(data));
   }, [setCityOne, setCityTwo]);
 
   return (
