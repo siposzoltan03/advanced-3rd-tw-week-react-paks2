@@ -1,12 +1,18 @@
 import React from "react";
-import Map from "./components/Map";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
+// components
+import HomePage from "./pages/HomePage";
+
+// style
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <Map />
+      <Router>
+        <Route path="/" component={HomePage} />
+      </Router>
     </div>
   );
 }
