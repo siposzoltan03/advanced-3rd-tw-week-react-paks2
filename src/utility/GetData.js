@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-function getCity(url) {
+export function getCity(url) {
   return Axios.get(url).then(resp => ({
     geonameId: resp.data.geoname_id,
     name: resp.data.name,
@@ -11,5 +11,3 @@ function getCity(url) {
     fullName: resp.data.full_name
   }));
 }
-
-export default getCity;
