@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from "react";
-import { Input } from 'antd';
+import { Input } from "antd";
 
 import { CityContext } from "../contexts/CityContext";
 import { getCity } from "../utility/GetData";
@@ -19,13 +19,17 @@ function SearchBar() {
   }, [setCityOne, setCityTwo]);
 
   return (
-      <div>
-        <Search
-            placeholder="input search text"
-            onSearch={value => console.log(value)}
-            style={{ width: 200 }}
-        />
-      </div>
+    <div>
+      <Search
+        placeholder="input search text"
+        onSearch={value => console.log(value)}
+        style={{ width: 200 }}
+      />
+      <span>
+        {" "}
+        You've selected the following cities: {cityOne.name}, {cityTwo.name}
+      </span>
+    </div>
   );
 }
 
