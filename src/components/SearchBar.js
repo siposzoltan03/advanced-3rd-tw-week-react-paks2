@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from "react";
+import { Input } from 'antd';
 
 import CityContext from "../contexts/CityContext";
 import getCity from "../utility/GetData";
@@ -7,6 +8,8 @@ function SearchBar() {
   const { city1, city2 } = useContext(CityContext);
   const [cityOne, setCityOne] = city1;
   const [cityTwo, setCityTwo] = city2;
+
+  const { Search } = Input;
 
   useEffect(() => {
     getCity(
@@ -18,10 +21,13 @@ function SearchBar() {
   }, [setCityOne, setCityTwo]);
 
   return (
-    <div id="search-bar">
-      <h1>{cityOne.name}</h1>
-      <h1>{cityTwo.name}</h1>
-    </div>
+      <div>
+        <Search
+            placeholder="input search text"
+            onSearch={value => console.log(value)}
+            style={{ width: 200 }}
+        />
+      </div>
   );
 }
 
