@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import CityContext from "./contexts/CityContext";
+import { CityProvider } from "./contexts/CityContext";
 
 // components
 import HomePage from "./pages/HomePage";
@@ -9,19 +9,14 @@ import HomePage from "./pages/HomePage";
 import "./App.css";
 
 function App() {
-  const [cityOne, setCityOne] = useState({});
-  const [cityTwo, setCityTwo] = useState({});
-
   return (
-    <CityContext.Provider
-      value={{ city1: [cityOne, setCityOne], city2: [cityTwo, setCityTwo] }}
-    >
+    <CityProvider>
       <div className="App">
         <Router>
           <Route path="/" component={HomePage} />
         </Router>
       </div>
-    </CityContext.Provider>
+    </CityProvider>
   );
 }
 
