@@ -19,17 +19,18 @@ function SearchBar() {
   }, [setCityOne, setCityTwo]);
 
   return (
-    <div>
-      <Search
-        placeholder="input search text"
-        onSearch={value => console.log(value)}
-        style={{ width: 200 }}
-      />
-      <span>
-        {" "}
-        You've selected the following cities: {cityOne.name}, {cityTwo.name}
-      </span>
-    </div>
+      <div>
+        <Search
+            placeholder="Search for a city"
+            onSearch={value => console.log(value)}
+            style={{ width: 200 }}
+            className="search-input"
+        />
+        <span>
+            {" "}
+            You've selected the following cities: {cityOne.name}, {cityTwo.name}
+        </span>
+      </div>
   );
 }
 
