@@ -22,7 +22,8 @@ function Map() {
             : Object.keys(cityTwo).length === 0
             ? setCityTwo(data)
             : alert("You've already choosen two cities to compare!")
-        );
+        )
+        .catch(() => alert("There is no city around here!"));
     },
     [cityOne, cityTwo, setCityOne, setCityTwo]
   );
