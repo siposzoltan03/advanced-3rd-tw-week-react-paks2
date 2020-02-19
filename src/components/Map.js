@@ -8,10 +8,6 @@ import { CityContext } from "../contexts/CityContext";
 
 function Map() {
   const [map, setMap] = useState();
-  const [lat1, setLat1] = useState();
-  const [lng1, setLng1] = useState();
-  const [lat2, setLat2] = useState();
-  const [lng2, setLng2] = useState();
   const { city1, city2 } = useContext(CityContext);
   const [cityOne, setCityOne] = city1;
   const [cityTwo, setCityTwo] = city2;
@@ -31,27 +27,20 @@ function Map() {
     [cityOne, cityTwo, setCityOne, setCityTwo]
   );
 
-  useEffect(() => {
-    if (map && cityOne) {
-      setLat1(cityOne.latitude);
-      setLng1(cityOne.longitude);
-    }
-    if (map && cityOne) {
-      setLat2(cityTwo.latitude);
-      setLng2(cityTwo.longitude);
-    }
-  }, [cityOne, cityTwo.latitude, cityTwo.longitude, map]);
+  const markCity = useCallback(
+    city => {
+      if (map && city.latitude) {
+        let marker = L.marker([city.latitude, city.longitude]).addTo(map);
+        marker.bindPopup(`${city.latitude}<br>${city.longitude}`).openPopup();
+      }
+    },
+    [map]
+  );
 
   useEffect(() => {
-    if (lat1 && lng1) {
-      let marker1 = L.marker([lat1, lng1]).addTo(map);
-      marker1.bindPopup(`${lat1}<br>${lng1}`).openPopup();
-    }
-    if (lat2 && lng2) {
-      let marker2 = L.marker([lat2, lng2]).addTo(map);
-      marker2.bindPopup(`${lat2}<br>${lng2}`).openPopup();
-    }
-  }, [lat1, lat2, lng1, lng2, map]);
+    markCity(cityOne);
+    markCity(cityTwo);
+  }, [cityOne, cityTwo, markCity]);
 
   useEffect(() => {
     if (map) {
