@@ -5,7 +5,7 @@ import { CityContext } from "../contexts/CityContext";
 import { getCity } from "../utility/GetData";
 
 function SearchBar() {
-  const [cityUrl, setCityUrl] = useState("https://api.teleport.org/api/cities/geonameid%3A5391959/");
+  const [cityUrl, setCityUrl] = useState(null);
   const { city1, city2 } = useContext(CityContext);
   const [cityOne, setCityOne] = city1;
   const [cityTwo, setCityTwo] = city2;
@@ -13,13 +13,15 @@ function SearchBar() {
   const { Search } = Input;
 
   useEffect(() => {
-    getCity(cityUrl).then(data =>
-        Object.keys(cityOne).length === 0
-            ? setCityOne(data)
-            : Object.keys(cityTwo).length === 0
-            ? setCityTwo(data)
-            : alert("You've already chosen two cities to compare!")
-    );
+      if (cityUrl !== null) {
+          getCity(cityUrl).then(data =>
+              Object.keys(cityOne).length === 0
+                  ? setCityOne(data)
+                  : Object.keys(cityTwo).length === 0
+                  ? setCityTwo(data)
+                  : alert("You've already chosen two cities to compare!")
+          );
+      }
   }, [cityUrl]);
 
     function changeUrl(value) {
