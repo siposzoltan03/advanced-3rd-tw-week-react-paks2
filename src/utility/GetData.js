@@ -17,9 +17,20 @@ export function getNearestCityUrl(lat, lng) {
     `https://api.teleport.org/api/locations/${lat},${lng}/`
   ).then(
     resp =>
+      resp.data._embedded["location:nearest-cities"][0]._links[
+        "location:nearest-city"
+      ].href
+  );
+}
+
+export function getSearchedCityUrl(cityName) {
+  return Axios.get(
+    `https://api.teleport.org/api/cities/?search=${cityName}&limit=1`
+  ).then(
+    resp =>
       (
-        (((resp.data._embedded["location:nearest-cities"] || {})[0] || {})
-          ._links || {})["location:nearest-city"] || {}
+        (((resp.data._embedded["city:search-results"] || {})[0] || {})._links ||
+          {})["city:item"] || {}
       ).href
   );
 }

@@ -21,10 +21,30 @@ function Map() {
             : Object.keys(cityTwo).length === 0
             ? setCityTwo(data)
             : alert("You've already choosen two cities to compare!")
-        );
+        )
+        .catch(() => alert("There is no city around here!"));
     },
     [cityOne, cityTwo, setCityOne, setCityTwo]
   );
+
+  const markCity = useCallback(
+    city => {
+      if (map && city && city.latitude) {
+        let marker = L.marker([city.latitude, city.longitude]).addTo(map);
+        marker
+          .bindPopup(
+            `${city.name}<br>lat: ${city.latitude}<br>lng: ${city.longitude}`
+          )
+          .openPopup();
+      }
+    },
+    [map]
+  );
+
+  useEffect(() => {
+    markCity(cityOne);
+    markCity(cityTwo);
+  }, [cityOne, cityTwo, markCity]);
 
   useEffect(() => {
     if (map) {
