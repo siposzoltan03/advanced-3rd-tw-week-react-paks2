@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import L from "leaflet";
+import SideBar from "./SideBar";
+import "../Map.css";
 
 function Map() {
   useEffect(() => {
@@ -16,7 +18,11 @@ function Map() {
     });
   }, []);
 
-  return <div id="map"></div>;
+  return (
+    <div id="map">
+      <SideBar />
+    </div>
+  );
 }
 
 export default Map;
