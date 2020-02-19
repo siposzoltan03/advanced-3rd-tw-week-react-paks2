@@ -30,7 +30,7 @@ function Map() {
 
   const markCity = useCallback(
     city => {
-      if (map && city.latitude) {
+      if (map && city && city.latitude) {
         let marker = L.marker([city.latitude, city.longitude]).addTo(map);
         marker
           .bindPopup(
