@@ -23,3 +23,15 @@ export function getNearestCityUrl(lat, lng) {
       ).href
   );
 }
+
+export function getSearchedCityUrl(cityName) {
+  return Axios.get(
+    `https://api.teleport.org/api/cities/?search=${cityName}&limit=1`
+  ).then(
+    resp =>
+      (
+        (((resp.data._embedded["city:search-results"] || {})[0] || {})._links ||
+          {})["city:item"] || {}
+      ).href
+  );
+}

@@ -1,9 +1,10 @@
-import React, { useEffect, useContext, useState, createRef } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { Input } from "antd";
 import { Spinner } from "./Spinner";
 
 import { CityContext } from "../contexts/CityContext";
 import { useFetchCityDetails } from "../utility/customHooks/useFetchCityDetails";
+import { getSearchedCityUrl } from "../utility/GetData";
 
 function SearchBar() {
   const [cityUrl, setCityUrl] = useState(null);
@@ -13,10 +14,9 @@ function SearchBar() {
   const [cityIsLoading, fetchedCity] = useFetchCityDetails(cityUrl);
 
   const { Search } = Input;
-  const search = createRef();
 
   function changeUrl(value) {
-    setCityUrl(value);
+    getSearchedCityUrl(value).then(cityUrl => setCityUrl(cityUrl));
   }
 
   useEffect(() => {
@@ -28,6 +28,7 @@ function SearchBar() {
         : alert("You've already chosen two cities to compare!");
     }
   }, [cityIsLoading]);
+
   if (cityIsLoading) {
     return <Spinner />;
   } else {
@@ -40,7 +41,6 @@ function SearchBar() {
           className="search-input"
           autoComplete="off"
           tabIndex="1"
-          itemRef={search}
         />
         <span>
           {" "}
