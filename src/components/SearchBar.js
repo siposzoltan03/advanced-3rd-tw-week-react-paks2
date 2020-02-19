@@ -17,8 +17,8 @@ function SearchBar() {
   const { Search } = Input;
 
   useEffect(() => {
-    setCityOne(fetchedCityOne);
-    setCityTwo(fetchedCityTwo);
+    /*setCityOne(fetchedCityOne);
+    setCityTwo(fetchedCityTwo);*/
   }, [
     fetchedCityOne,
     fetchedCityTwo,
