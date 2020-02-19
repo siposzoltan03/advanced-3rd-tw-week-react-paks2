@@ -1,15 +1,22 @@
 import React from "react";
-import logo from "./logo.svg";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { CityProvider } from "./contexts/CityContext";
+
+// components
+import HomePage from "./pages/HomePage";
+
+// style
 import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Under construction...</p>
-      </header>
-    </div>
+    <CityProvider>
+      <div className="App">
+        <Router>
+          <Route path="/" component={HomePage} />
+        </Router>
+      </div>
+    </CityProvider>
   );
 }
 
