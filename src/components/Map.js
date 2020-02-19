@@ -43,6 +43,7 @@ function Map() {
       L.map("map", {
         center: [49.8419, 24.0315],
         zoom: 4,
+        minZoom: 3,
         layers: [
           L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
             attribution:
