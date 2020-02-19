@@ -12,6 +12,9 @@ function SearchBar() {
   const [cityOne, setCityOne] = city1;
   const [cityTwo, setCityTwo] = city2;
   const [cityIsLoading, fetchedCity] = useFetchCityDetails(cityUrl);
+  const tagStyleOne = cityOne.name === undefined ? { backgroundColor: 'transparent'} : { backgroundColor: 'lightgray'};
+  const tagStyleTwo = cityTwo.name === undefined ? { backgroundColor: 'transparent'} : { backgroundColor: 'lightgray'};
+
 
     const {Search} = Input;
     const deleteCityOne = () => {
@@ -55,52 +58,24 @@ function SearchBar() {
           tabIndex="1"
         />
         <span>
+                {" "}
+          You've selected the following cities:
           {" "}
-          You've selected the following cities: {cityOne.name} {cityTwo.name}
-        </span>
+          <span className='city-tag' style={tagStyleOne}>
+                    {cityOne.name} {" "}
+            {cityOne.name && <i className="far fa-times-circle" onClick={deleteCityOne.bind(this, cityOne)}/>}
+                  </span>
+          {"  "}
+          <span className='city-tag' style={tagStyleTwo}>
+                    {cityTwo.name} {" "}
+            {cityTwo.name && <i className="far fa-times-circle" onClick={deleteCityTwo.bind(this, cityTwo)}/>}
+                  </span>
+                </span>
       </div>
     );
   }
-    useEffect(() => {
-        /*setCityOne(fetchedCityOne);
-        setCityTwo(fetchedCityTwo);*/
-    }, [
-        fetchedCityOne,
-        fetchedCityTwo,
-        cityOneIsLoading,
-        cityTwoIsLoading,
-        setCityOne,
-        setCityTwo
-    ]);
-    if (cityOneIsLoading || cityTwoIsLoading) {
-        return <Spinner/>;
-    } else {
-      const tagStyleOne = cityOne.name === undefined ? { backgroundColor: 'transparent'} : { backgroundColor: 'lightgray'};
-      const tagStyleTwo = cityTwo.name === undefined ? { backgroundColor: 'transparent'} : { backgroundColor: 'lightgray'};
-      return (
-          <div>
-            <Search
-                placeholder="input search text"
-                onSearch={value => console.log(value)}
-                style={{width: 200}}
-            />
-            <span>
-                {" "}
-              You've selected the following cities:
-              {" "}
-                  <span className='city-tag' style={tagStyleOne}>
-                    {cityOne.name} {" "}
-                    {cityOne.name && <i className="far fa-times-circle" onClick={deleteCityOne.bind(this, cityOne)}/>}
-                  </span>
-                  {"  "}
-                  <span className='city-tag' style={tagStyleTwo}>
-                    {cityTwo.name} {" "}
-                    {cityTwo.name && <i className="far fa-times-circle" onClick={deleteCityTwo.bind(this, cityTwo)}/>}
-                  </span>
-                </span>
-          </div>
-      );
-    }
+
+
 
 }
 
