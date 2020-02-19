@@ -1,34 +1,42 @@
-import React, { useEffect, useContext } from "react";
+import React, {useEffect, useContext, useState} from "react";
 import { Input } from "antd";
 
 import { CityContext } from "../contexts/CityContext";
 import { getCity } from "../utility/GetData";
 
 function SearchBar() {
+  const [cityUrl, setCityUrl] = useState("https://api.teleport.org/api/cities/geonameid%3A5391959/");
   const { city1, city2 } = useContext(CityContext);
   const [cityOne, setCityOne] = city1;
   const [cityTwo, setCityTwo] = city2;
-  const city1Url = "https://api.teleport.org/api/cities/geonameid%3A5391959/";
-  const city2Url = "https://api.teleport.org/api/cities/geonameid%3A5391959/";
 
   const { Search } = Input;
 
   useEffect(() => {
-    getCity(city1Url).then(data => setCityOne(data));
-    getCity(city2Url).then(data => setCityTwo(data));
-  }, [setCityOne, setCityTwo]);
+    getCity(cityUrl).then(data =>
+        Object.keys(cityOne).length === 0
+            ? setCityOne(data)
+            : Object.keys(cityTwo).length === 0
+            ? setCityTwo(data)
+            : alert("You've already chosen two cities to compare!")
+    );
+  }, [cityUrl]);
+
+    function changeUrl(value) {
+
+    }
 
   return (
       <div>
         <Search
             placeholder="Search for a city"
-            onSearch={value => console.log(value)}
+            onSearch={value => changeUrl(value)}
             style={{ width: 200 }}
             className="search-input"
         />
         <span>
             {" "}
-            You've selected the following cities: {cityOne.name}, {cityTwo.name}
+            You've selected the following cities: {cityOne.name} {cityTwo.name}
         </span>
       </div>
   );
