@@ -17,8 +17,9 @@ export function getNearestCityUrl(lat, lng) {
     `https://api.teleport.org/api/locations/${lat},${lng}/`
   ).then(
     resp =>
-      resp.data._embedded["location:nearest-cities"][0]._links[
-        "location:nearest-city"
-      ].href
+      (
+        (((resp.data._embedded["location:nearest-cities"] || {})[0] || {})
+          ._links || {})["location:nearest-city"] || {}
+      ).href
   );
 }
