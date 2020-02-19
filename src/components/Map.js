@@ -32,7 +32,11 @@ function Map() {
     city => {
       if (map && city.latitude) {
         let marker = L.marker([city.latitude, city.longitude]).addTo(map);
-        marker.bindPopup(`${city.latitude}<br>${city.longitude}`).openPopup();
+        marker
+          .bindPopup(
+            `${city.name}<br>lat: ${city.latitude}<br>lng: ${city.longitude}`
+          )
+          .openPopup();
       }
     },
     [map]
