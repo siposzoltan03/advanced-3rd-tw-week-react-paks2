@@ -16,7 +16,13 @@ function SearchBar() {
   const { Search } = Input;
 
   function changeUrl(value) {
-    getSearchedCityUrl(value).then(cityUrl => setCityUrl(cityUrl));
+    getSearchedCityUrl(value).then(cityUrl => {
+      if (cityUrl === undefined) {
+        alert(`There is no such city as ${value}`);
+      } else {
+        setCityUrl(cityUrl);
+      }
+    });
   }
 
   useEffect(() => {
