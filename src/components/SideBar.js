@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useSpring, animated } from 'react-spring'
 import useMeasure from './useMeasure'
 import '../style.css'
+import { CityProvider } from '../contexts/CityContext'
+import Cities from '../components/Cities'
 // import 'fontawesome';
 
 export function SideBar() {
@@ -15,7 +17,12 @@ export function SideBar() {
             <animated.div className="fill" style={props}>
                 <div className='arrow'><i className={arrowDirection()}/></div>
             </animated.div>
-            <animated.div className="content"/>
+            
+            <animated.div className="content">
+							<CityProvider>
+								<Cities />
+							</CityProvider>
+            </animated.div>
         </div>
     );
     function arrowDirection() {
