@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useState } from "react";
 import { Input } from "antd";
 import { Spinner } from "./Spinner";
 import TeleportAutocomplete from "teleport-autocomplete/js/autocomplete";
+import { restoreCity } from "../utility/DataManipulation";
 
 import { CityContext } from "../contexts/CityContext";
 import { useFetchCityDetails } from "../utility/customHooks/useFetchCityDetails";
@@ -24,16 +25,12 @@ function SearchBar() {
       : { backgroundColor: "#717688" };
 
   const deleteCityOne = () => {
-    let cityTwoCopy = { ...cityTwo };
-    delete cityTwoCopy.compared;
-    setCityTwo(cityTwoCopy);
+    setCityTwo(restoreCity(cityTwo));
     setCityOne({});
     setCityUrl(null);
   };
   const deleteCityTwo = () => {
-    let cityOneCopy = { ...cityOne };
-    delete cityOneCopy.compared;
-    setCityOne(cityOneCopy);
+    setCityOne(restoreCity(cityOne));
     setCityTwo({});
     setCityUrl(null);
   };

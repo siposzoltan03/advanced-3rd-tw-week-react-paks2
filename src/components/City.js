@@ -33,7 +33,7 @@ export const City = props => {
         <span className="progress">
           <div
             className={
-              props.costOfLiving[greater]
+              props.costOfLiving[greater] === true
                 ? "progress-bar bg-success"
                 : props.costOfLiving[greater] === false
                 ? "progress-bar bg-danger"
@@ -53,7 +53,7 @@ export const City = props => {
         <span className="progress">
           <div
             className={
-              props.travelConnectivity[greater]
+              props.travelConnectivity[greater] === true
                 ? "progress-bar bg-success"
                 : props.travelConnectivity[greater] === false
                 ? "progress-bar bg-danger"
@@ -73,7 +73,7 @@ export const City = props => {
         <span className="progress">
           <div
             className={
-              props.safety[greater]
+              props.safety[greater] === true
                 ? "progress-bar bg-success"
                 : props.safety[greater] === false
                 ? "progress-bar bg-danger"
@@ -93,7 +93,7 @@ export const City = props => {
         <span className="progress">
           <div
             className={
-              props.environmentalQuality[greater]
+              props.environmentalQuality[greater] === true
                 ? "progress-bar bg-success"
                 : props.environmentalQuality[greater] === false
                 ? "progress-bar bg-danger"
@@ -113,7 +113,7 @@ export const City = props => {
         <span className="progress">
           <div
             className={
-              props.internetAccess[greater]
+              props.internetAccess[greater] === true
                 ? "progress-bar bg-success"
                 : props.internetAccess[greater] === false
                 ? "progress-bar bg-danger"
@@ -133,7 +133,7 @@ export const City = props => {
         <span className="progress">
           <div
             className={
-              props.leisureAndCulture[greater]
+              props.leisureAndCulture[greater] === true
                 ? "progress-bar bg-success"
                 : props.leisureAndCulture[greater] === false
                 ? "progress-bar bg-danger"
