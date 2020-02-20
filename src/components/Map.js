@@ -10,6 +10,7 @@ function Map() {
   const { city1, city2 } = useContext(CityContext);
   const [cityOne, setCityOne] = city1;
   const [cityTwo, setCityTwo] = city2;
+  const [layers, setLayers] = useState();
 
   const onMapClick = useCallback(
     e => {
@@ -30,7 +31,8 @@ function Map() {
   const markCity = useCallback(
     city => {
       if (map && city && city.latitude) {
-        let marker = L.marker([city.latitude, city.longitude]).addTo(map);
+        let marker = L.marker([city.latitude, city.longitude]);
+        layers.addLayer(marker);
         marker
           .bindPopup(
             `${city.name}<br>lat: ${city.latitude}<br>lng: ${city.longitude}`
@@ -38,13 +40,21 @@ function Map() {
           .openPopup();
       }
     },
-    [map]
+    [layers, map]
   );
 
   useEffect(() => {
+    setLayers(L.layerGroup());
+  }, []);
+
+  useEffect(() => {
+    if (layers) {
+      layers.clearLayers();
+      layers.addTo(map);
+    }
     markCity(cityOne);
     markCity(cityTwo);
-  }, [cityOne, cityTwo, markCity]);
+  }, [cityOne, cityTwo, layers, map, markCity]);
 
   useEffect(() => {
     if (map) {
@@ -73,10 +83,7 @@ function Map() {
     );
   }, []);
 
-  return (
-    <div id="map">
-    </div>
-  );
+  return <div id="map"></div>;
 }
 
 export default Map;
