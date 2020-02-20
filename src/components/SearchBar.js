@@ -23,9 +23,15 @@ function SearchBar() {
 
   const { Search } = Input;
   const deleteCityOne = () => {
+    let cityTwoCopy = {...cityTwo};
+    delete cityTwoCopy.compared;
+    setCityTwo(cityTwoCopy);
     setCityOne({});
   };
   const deleteCityTwo = () => {
+    let cityOneCopy = {...cityOne};
+    delete cityOneCopy.compared;
+    setCityOne(cityOneCopy);
     setCityTwo({});
   };
 

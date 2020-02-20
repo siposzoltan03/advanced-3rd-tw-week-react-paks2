@@ -10,7 +10,8 @@ export function Cities() {
   const [cityTwo, setCityTwo] = city2;
   const cities = [cityOne, cityTwo];
   const name = 0;
-  const score = 1;
+	const score = 1;
+	const greater = 2;
 
   useEffect(() => {
     if (
@@ -32,7 +33,41 @@ export function Cities() {
               : setCityTwo({ ...cityTwo, ...scores })
           );
       }
-    }
+		};
+		if (
+      Object.keys(cityOne).length === 14 &&
+      Object.keys(cityTwo).length === 14
+    ) {
+			let cityOneCopy = {...cityOne};
+			let cityTwoCopy = {...cityTwo};
+			
+			cityOneCopy["housing"][greater] = cityOneCopy["housing"][score] > cityTwoCopy["housing"][score];
+			cityTwoCopy["housing"][greater] = !cityOneCopy["housing"][greater];
+
+			cityOneCopy["costOfLiving"][greater] = cityOneCopy["costOfLiving"][score] > cityTwoCopy["costOfLiving"][score];
+			cityTwoCopy["costOfLiving"][greater] = !cityOneCopy["costOfLiving"][greater];
+
+			cityOneCopy["travelConnectivity"][greater] = cityOneCopy["travelConnectivity"][score] > cityTwoCopy["travelConnectivity"][score];
+			cityTwoCopy["travelConnectivity"][greater] = !cityOneCopy["travelConnectivity"][greater];
+
+			cityOneCopy["safety"][greater] = cityOneCopy["safety"][score] > cityTwoCopy["safety"][score];
+			cityTwoCopy["safety"][greater] = !cityOneCopy["safety"][greater];
+
+			cityOneCopy["internetAccess"][greater] = cityOneCopy["internetAccess"][score] > cityTwoCopy["internetAccess"][score];
+			cityTwoCopy["internetAccess"][greater] = !cityOneCopy["internetAccess"][greater];
+
+			cityOneCopy["environmentalQuality"][greater] = cityOneCopy["environmentalQuality"][score] > cityTwoCopy["environmentalQuality"][score];
+			cityTwoCopy["environmentalQuality"][greater] = !cityOneCopy["environmentalQuality"][greater];
+
+			cityOneCopy["leisureAndCulture"][greater] = cityOneCopy["leisureAndCulture"][score] > cityTwoCopy["leisureAndCulture"][score];
+			cityTwoCopy["leisureAndCulture"][greater] = !cityOneCopy["leisureAndCulture"][greater];
+
+			cityOneCopy.compared = true;
+			cityTwoCopy.compared = true;
+
+			setCityOne(cityOneCopy);
+			setCityTwo(cityTwoCopy);
+		};
   }, [cityOne, cityTwo, setCityOne, setCityTwo]);
 
   if (Object.keys(cities[0]).length > 0 || Object.keys(cities[1]).length > 0) {
@@ -49,7 +84,7 @@ export function Cities() {
             safety={city.safety}
             environmentalQuality={city.environmentalQuality}
             internetAccess={city.internetAccess}
-            leisureAndCulture={city.leisureAndCulture}
+						leisureAndCulture={city.leisureAndCulture}
             key={city.name}
           />
         ))}
