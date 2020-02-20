@@ -25,11 +25,8 @@ export function getNearestCityUrl(lat, lng) {
 }
 
 export function getUrbanAreaScoresUrl(url) {
-  return Axios.get(url).then(res => (
-      {
-        urbanAreaScores: ((res.data._links || {})["ua:scores"] || {}).href
-      }
-    )
+  return Axios.get(url).then(res =>
+        ((res.data._links || {})["ua:scores"] || {}).href
   );
 }
 
