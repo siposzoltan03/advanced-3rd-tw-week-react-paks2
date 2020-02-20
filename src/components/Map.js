@@ -1,6 +1,5 @@
 import React, { useEffect, useContext, useCallback, useState } from "react";
 import L from "leaflet";
-import SideBar from "./SideBar";
 import "../Map.css";
 
 import { getCity, getNearestCityUrl } from "../utility/GetData";
@@ -76,7 +75,6 @@ function Map() {
 
   return (
     <div id="map">
-      <SideBar />
     </div>
   );
 }

@@ -12,8 +12,17 @@ function SearchBar() {
   const [cityOne, setCityOne] = city1;
   const [cityTwo, setCityTwo] = city2;
   const [cityIsLoading, fetchedCity] = useFetchCityDetails(cityUrl);
+  const tagStyleOne = cityOne.name === undefined ? { backgroundColor: 'transparent'} : { backgroundColor: 'lightgray'};
+  const tagStyleTwo = cityTwo.name === undefined ? { backgroundColor: 'transparent'} : { backgroundColor: 'lightgray'};
 
-  const { Search } = Input;
+
+    const {Search} = Input;
+    const deleteCityOne = () => {
+      setCityOne({});
+    };
+    const deleteCityTwo = () => {
+      setCityTwo({});
+    };
 
   function changeUrl(value) {
     getSearchedCityUrl(value).then(cityUrl => {
@@ -49,12 +58,25 @@ function SearchBar() {
           tabIndex="1"
         />
         <span>
+                {" "}
+          You've selected the following cities:
           {" "}
-          You've selected the following cities: {cityOne.name} {cityTwo.name}
-        </span>
+          <span className='city-tag' style={tagStyleOne}>
+                    {cityOne.name} {" "}
+            {cityOne.name && <i className="far fa-times-circle" onClick={deleteCityOne.bind(this, cityOne)}/>}
+                  </span>
+          {"  "}
+          <span className='city-tag' style={tagStyleTwo}>
+                    {cityTwo.name} {" "}
+            {cityTwo.name && <i className="far fa-times-circle" onClick={deleteCityTwo.bind(this, cityTwo)}/>}
+                  </span>
+                </span>
       </div>
     );
   }
+
+
+
 }
 
 export default SearchBar;

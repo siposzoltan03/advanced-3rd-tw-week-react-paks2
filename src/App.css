@@ -39,3 +39,9 @@
     transform: rotate(360deg);
   }
 }
+
+.city-tag{
+  background-color: lightgray;
+  padding: 5px 8px;
+  border-radius: 5px;
+}
