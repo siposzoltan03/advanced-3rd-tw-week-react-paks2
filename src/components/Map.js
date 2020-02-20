@@ -17,11 +17,13 @@ function Map() {
       getNearestCityUrl(e.latlng.lat, e.latlng.lng)
         .then(cityUrl => getCity(cityUrl))
         .then(data =>
-          Object.keys(cityOne).length === 0
+          Object.keys(cityOne).length === 0 &&
+          data.geonameId !== cityTwo.geonameId
             ? setCityOne(data)
-            : Object.keys(cityTwo).length === 0
+            : Object.keys(cityTwo).length === 0 &&
+              cityOne.geonameId !== data.geonameId
             ? setCityTwo(data)
-            : alert("You've already choosen two cities to compare!")
+            : alert("You can only choose two different cities!")
         )
         .catch(() => alert("There is no city around here!"));
     },
