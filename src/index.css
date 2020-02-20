@@ -13,5 +13,20 @@ code {
 }
 
 #map {
-  height: 91vh;
+  height: 97vh;
+}
+
+.city {
+  margin: 20px;
+  padding: 20px;
+  height: 100%;
+  background: white;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.cities {
+  display: inline-flex;
+  width: 100%;
+  heigth: 100%;
 }
