@@ -39,12 +39,24 @@ export function Cities() {
     return (
       <div className="cities">
         {cities.map(city => (
-          <City cityName={city.name} key={city.name} />
+          <City
+            cityName={city.name}
+            fullName={city.fullName}
+            population={city.population}
+            housing={city.housing}
+            costOfLiving={city.costOfLiving}
+            travelConnectivity={city.travelConnectivity}
+            safety={city.safety}
+            environmentalQuality={city.environmentalQuality}
+            internetAccess={city.internetAccess}
+            leisureAndCulture={city.leisureAndCulture}
+            key={city.name}
+          />
         ))}
       </div>
     );
   } else {
-    return <div></div>;
+    return <div className="cities"></div>;
   }
 }
 
