@@ -4,12 +4,14 @@ import "../Map.css";
 
 import { getCity, getNearestCityUrl } from "../utility/GetData";
 import { CityContext } from "../contexts/CityContext";
+import {Spinner} from '../components/Spinner';
 
 function Map() {
   const [map, setMap] = useState();
   const { city1, city2 } = useContext(CityContext);
   const [cityOne, setCityOne] = city1;
   const [cityTwo, setCityTwo] = city2;
+  const [isLoading, setLoading] = useState(false);
 
   const onMapClick = useCallback(
     e => {
@@ -57,6 +59,7 @@ function Map() {
   }, [map, onMapClick]);
 
   useEffect(() => {
+    setLoading(true);
     // create map
     setMap(
       L.map("map", {
@@ -71,11 +74,12 @@ function Map() {
         ]
       })
     );
+    setLoading(false);
   }, []);
 
-  return (
-    <div id="map">
-    </div>
+  return ( isLoading
+          ? <Spinner/>
+          : <div id="map"></div>
   );
 }
 
