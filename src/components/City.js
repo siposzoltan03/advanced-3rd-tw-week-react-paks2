@@ -1,9 +1,10 @@
 import React from "react";
-import { Divider, Statistic, Rate, Icon } from "antd";
+import { Divider, Statistic } from "antd";
 
 export const City = props => {
   const name = 0;
   const score = 1;
+  const greater = 2;
   if (props.cityName !== undefined && props.housing !== undefined) {
     return (
       <div className="city">
@@ -31,85 +32,121 @@ export const City = props => {
         <Divider>{props.costOfLiving[name]}</Divider>
         <span className="progress">
           <div
-            className="progress-bar bg-info"
+            className={
+              props.costOfLiving[greater]
+                ? "progress-bar bg-success"
+                : props.costOfLiving[greater] === false
+                ? "progress-bar bg-danger"
+                : "progress-bar bg-info"
+            }
             role="progress"
             aria-valuemin="0"
             aria-valuemax="100"
             style={{
-              width: `${Math.ceil(props.costOfLiving[score]) * 10}%`
+              width: `${props.costOfLiving[score] * 10}%`
             }}
           >
-            {Math.ceil(props.costOfLiving[score])} /10
+            {props.costOfLiving[score].toFixed(2)} /10
           </div>
         </span>
         <Divider>{props.travelConnectivity[name]}</Divider>
         <span className="progress">
           <div
-            className="progress-bar bg-info"
+            className={
+              props.travelConnectivity[greater]
+                ? "progress-bar bg-success"
+                : props.travelConnectivity[greater] === false
+                ? "progress-bar bg-danger"
+                : "progress-bar bg-info"
+            }
             role="progress"
             aria-valuemin="0"
             aria-valuemax="100"
             style={{
-              width: `${Math.ceil(props.travelConnectivity[score]) * 10}%`
+              width: `${props.travelConnectivity[score] * 10}%`
             }}
           >
-            {Math.ceil(props.travelConnectivity[score])} /10
+            {props.travelConnectivity[score].toFixed(2)} /10
           </div>
         </span>
         <Divider>{props.safety[name]}</Divider>
         <span className="progress">
           <div
-            className="progress-bar bg-info"
+            className={
+              props.safety[greater]
+                ? "progress-bar bg-success"
+                : props.safety[greater] === false
+                ? "progress-bar bg-danger"
+                : "progress-bar bg-info"
+            }
             role="progress"
             aria-valuemin="0"
             aria-valuemax="100"
             style={{
-              width: `${Math.ceil(props.safety[score]) * 10}%`
+              width: `${props.safety[score] * 10}%`
             }}
           >
-            {Math.ceil(props.safety[score])} /10
+            {props.safety[score].toFixed(2)} /10
           </div>
         </span>
         <Divider>{props.environmentalQuality[name]}</Divider>
         <span className="progress">
           <div
-            className="progress-bar bg-info"
+            className={
+              props.environmentalQuality[greater]
+                ? "progress-bar bg-success"
+                : props.environmentalQuality[greater] === false
+                ? "progress-bar bg-danger"
+                : "progress-bar bg-info"
+            }
             role="progress"
             aria-valuemin="0"
             aria-valuemax="100"
             style={{
-              width: `${Math.ceil(props.environmentalQuality[score]) * 10}%`
+              width: `${props.environmentalQuality[score] * 10}%`
             }}
           >
-            {Math.ceil(props.environmentalQuality[score])} /10
+            {props.environmentalQuality[score].toFixed(2)} /10
           </div>
         </span>
         <Divider>{props.internetAccess[name]}</Divider>
         <span className="progress">
           <div
-            className="progress-bar bg-info"
+            className={
+              props.internetAccess[greater]
+                ? "progress-bar bg-success"
+                : props.internetAccess[greater] === false
+                ? "progress-bar bg-danger"
+                : "progress-bar bg-info"
+            }
             role="progress"
             aria-valuemin="0"
             aria-valuemax="100"
             style={{
-              width: `${Math.ceil(props.internetAccess[score]) * 10}%`
+              width: `${props.internetAccess[score] * 10}%`
             }}
           >
-            {Math.ceil(props.internetAccess[score])} /10
+            {props.internetAccess[score].toFixed(2)} /10
           </div>
         </span>
         <Divider>{props.leisureAndCulture[name]}</Divider>
         <span className="progress">
           <div
-            className="progress-bar bg-info"
+            className={
+              props.leisureAndCulture[greater]
+                ? "progress-bar bg-success"
+                : props.leisureAndCulture[greater] === false
+                ? "progress-bar bg-danger"
+                : "progress-bar bg-info"
+            }
             role="progress"
             aria-valuemin="0"
             aria-valuemax="100"
             style={{
-              width: `${Math.ceil(props.leisureAndCulture[score]) * 10}%`
+              width: `${props.leisureAndCulture[score] * 10}%`
             }}
           >
-            {Math.ceil(props.leisureAndCulture[score])} /10
+            {props.leisureAndCulture[score].toFixed(2)} /10
           </div>
         </span>
       </div>
