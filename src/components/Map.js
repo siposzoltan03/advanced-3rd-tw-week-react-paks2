@@ -23,7 +23,7 @@ function Map() {
             : Object.keys(cityTwo).length === 0 &&
               cityOne.geonameId !== data.geonameId
             ? setCityTwo(data)
-            : alert("You can only choose two different cities!")
+            : alert("You can only choose maximum two and different cities!")
         )
         .catch(() => alert("There is no city around here!"));
     },
