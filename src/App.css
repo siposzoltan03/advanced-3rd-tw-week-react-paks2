@@ -1,8 +1,10 @@
 @import '~antd/dist/antd.css';
 @import '~@fortawesome/fontawesome-free/css/all.min.css';
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300&display=swap');
 
 .App {
   text-align: center;
+  font-family: 'Open Sans', sans-serif
 }
 
 .App-logo {
@@ -41,7 +43,58 @@
 }
 
 .city-tag{
-  background-color: lightgray;
   padding: 5px 8px;
   border-radius: 5px;
+}
+
+.search-bar {
+  min-height: 75px;
+  height:75px;
+  background: #414656;
+}
+
+.input {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+  font-size: 1.5em;
+  text-align: left;
+  margin-left: 45%;
+  line-height: 1.4;
+  position: relative;
+  top: 10%;
+  z-index: 999;
+}
+
+.results {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+  font-size: 1.5em;
+  color: white;
+  text-align: left;
+  margin-left: 40%;
+  line-height: 1.4;
+  position: relative;
+}
+
+ul {
+  background: white;
+  width: fit-content;
+  cursor: pointer;
+  list-style-type: none;
+}
+
+li {
+  list-style-type: none;
+  margin-right: 40px;
+}
+
+li:hover {
+  background: #717688;
+}
+
+.logo{
+  position: absolute;
+  top: -60px;
+  left: 20px;
+
 }

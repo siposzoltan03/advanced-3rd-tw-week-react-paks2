@@ -1,10 +1,12 @@
 import React, { useEffect, useContext, useState } from "react";
 import { Input } from "antd";
 import { Spinner } from "./Spinner";
+import TeleportAutocomplete from "teleport-autocomplete/js/autocomplete";
 
 import { CityContext } from "../contexts/CityContext";
 import { useFetchCityDetails } from "../utility/customHooks/useFetchCityDetails";
-import { getSearchedCityUrl } from "../utility/GetData";
+
+import logo from "../resources/logo.png";
 
 function SearchBar() {
   const [cityUrl, setCityUrl] = useState(null);
@@ -15,28 +17,26 @@ function SearchBar() {
   const tagStyleOne =
     cityOne.name === undefined
       ? { backgroundColor: "transparent" }
-      : { backgroundColor: "lightgray" };
+      : { backgroundColor: "#717688" };
   const tagStyleTwo =
     cityTwo.name === undefined
       ? { backgroundColor: "transparent" }
-      : { backgroundColor: "lightgray" };
+      : { backgroundColor: "#717688" };
 
-  const { Search } = Input;
   const deleteCityOne = () => {
     setCityOne({});
+    setCityUrl(null);
   };
   const deleteCityTwo = () => {
     setCityTwo({});
+    setCityUrl(null);
   };
 
   function changeUrl(value) {
-    getSearchedCityUrl(value).then(cityUrl => {
-      if (cityUrl === undefined) {
-        alert(`There is no such city as ${value}`);
-      } else {
-        setCityUrl(cityUrl);
-      }
-    });
+    if (value !== null) {
+      const url = `https://api.teleport.org/api/cities/geonameid:${value.geonameId}/`;
+      setCityUrl(url);
+    }
   }
 
   useEffect(() => {
@@ -49,45 +49,52 @@ function SearchBar() {
     }
   }, [cityIsLoading]);
 
-  if (cityIsLoading) {
-    return <Spinner />;
-  } else {
-    return (
-      <div>
-        <Search
+  useEffect(() => {
+    TeleportAutocomplete.init("#search").on("change", function(value) {
+      changeUrl(value);
+    });
+  }, []);
+
+  return (
+    <div className="search-bar">
+      <img src={logo} alt="logo" className="logo" />
+      <div className="results">
+        {" "}
+        {Object.keys(cityOne).length === 0 && Object.keys(cityTwo).length === 0
+          ? ""
+          : "You've selected the following cities: "}
+        <span className="city-tag" style={tagStyleOne}>
+          {cityOne.name}{" "}
+          {cityOne.name && (
+            <i
+              className="far fa-times-circle"
+              onClick={deleteCityOne.bind(this, cityOne)}
+            />
+          )}
+        </span>
+        {"  "}
+        <span className="city-tag" style={tagStyleTwo}>
+          {cityTwo.name}{" "}
+          {cityTwo.name && (
+            <i
+              className="far fa-times-circle"
+              onClick={deleteCityTwo.bind(this, cityTwo)}
+            />
+          )}
+        </span>
+        {cityIsLoading === true ? <Spinner /> : ""}
+      </div>
+      <div className="input">
+        <Input
           placeholder="Search for a city"
-          onSearch={value => changeUrl(value)}
           style={{ width: 200 }}
-          className="search-input"
           autoComplete="off"
           tabIndex="1"
+          id="search"
         />
-        <span>
-          {" "}
-          You've selected the following cities:{" "}
-          <span className="city-tag" style={tagStyleOne}>
-            {cityOne.name}{" "}
-            {cityOne.name && (
-              <i
-                className="far fa-times-circle"
-                onClick={deleteCityOne.bind(this, cityOne)}
-              />
-            )}
-          </span>
-          {"  "}
-          <span className="city-tag" style={tagStyleTwo}>
-            {cityTwo.name}{" "}
-            {cityTwo.name && (
-              <i
-                className="far fa-times-circle"
-                onClick={deleteCityTwo.bind(this, cityTwo)}
-              />
-            )}
-          </span>
-        </span>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default SearchBar;

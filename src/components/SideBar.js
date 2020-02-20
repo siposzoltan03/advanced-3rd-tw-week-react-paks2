@@ -7,10 +7,10 @@ import Cities from "../components/Cities";
 // import 'fontawesome';
 
 export function SideBar() {
-  const [open, toggle] = useState(false);
-  const [bind, { width }] = useMeasure();
-  const props = useSpring({ width: open ? width : 20 });
-  const mainProps = { width: open ? "50%" : "20px" };
+    const [open, toggle] = useState(false);
+    const [bind, {width}] = useMeasure();
+    const props = useSpring({width: open ? width : 20});
+    const mainProps = {width: open ? '50%' : '20px'};
 
   return (
     <div
