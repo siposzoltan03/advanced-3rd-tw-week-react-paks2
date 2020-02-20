@@ -32,6 +32,4 @@ export function SideBar() {
   }
 }
 
-
-
 export default SideBar;

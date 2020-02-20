@@ -1,4 +1,5 @@
 import React from "react";
+import { Divider, Statistic, Rate, Icon } from "antd";
 
 export const City = props => {
   const name = 0;
@@ -8,22 +9,109 @@ export const City = props => {
       <div className="city">
         <h2>{props.cityName}</h2>
         <p>{props.fullName}</p>
-        <p>Population: {props.population}</p>
-        <h3>Ratings</h3>
-        <p>{props.housing[name]}</p>
-        <p>{props.housing[score]}</p>
-        <p>{props.costOfLiving[name]}</p>
-        <p>{props.costOfLiving[score]}</p>
-        <p>{props.travelConnectivity[name]}</p>
-        <p>{props.travelConnectivity[score]}</p>
-        <p>{props.safety[name]}</p>
-        <p>{props.safety[score]}</p>
-        <p>{props.environmentalQuality[name]}</p>
-        <p>{props.environmentalQuality[score]}</p>
-        <p>{props.internetAccess[name]}</p>
-        <p>{props.internetAccess[score]}</p>
-        <p>{props.leisureAndCulture[name]}</p>
-        <p>{props.leisureAndCulture[score]}</p>
+        <Divider>Population</Divider>
+        <Statistic value={props.population} />
+        <Divider>
+          <strong>Results</strong>
+        </Divider>
+        {/*<Divider>{props.housing[name]}</Divider>*/}
+        {/*<span className="progress">*/}
+        {/*  <div*/}
+        {/*    className="progress-bar bg-info"*/}
+        {/*    role="progress"*/}
+        {/*    aria-valuemin="0"*/}
+        {/*    aria-valuemax="100"*/}
+        {/*    style={{*/}
+        {/*      width: `${Math.ceil(props.housing[score]) * 10}%`*/}
+        {/*    }}*/}
+        {/*  >*/}
+        {/*    {Math.ceil(props.housing[score])} /10*/}
+        {/*  </div>*/}
+        {/*</span>*/}
+        <Divider>{props.costOfLiving[name]}</Divider>
+        <span className="progress">
+          <div
+            className="progress-bar bg-info"
+            role="progress"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            style={{
+              width: `${Math.ceil(props.costOfLiving[score]) * 10}%`
+            }}
+          >
+            {Math.ceil(props.costOfLiving[score])} /10
+          </div>
+        </span>
+        <Divider>{props.travelConnectivity[name]}</Divider>
+        <span className="progress">
+          <div
+            className="progress-bar bg-info"
+            role="progress"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            style={{
+              width: `${Math.ceil(props.travelConnectivity[score]) * 10}%`
+            }}
+          >
+            {Math.ceil(props.travelConnectivity[score])} /10
+          </div>
+        </span>
+        <Divider>{props.safety[name]}</Divider>
+        <span className="progress">
+          <div
+            className="progress-bar bg-info"
+            role="progress"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            style={{
+              width: `${Math.ceil(props.safety[score]) * 10}%`
+            }}
+          >
+            {Math.ceil(props.safety[score])} /10
+          </div>
+        </span>
+        <Divider>{props.environmentalQuality[name]}</Divider>
+        <span className="progress">
+          <div
+            className="progress-bar bg-info"
+            role="progress"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            style={{
+              width: `${Math.ceil(props.environmentalQuality[score]) * 10}%`
+            }}
+          >
+            {Math.ceil(props.environmentalQuality[score])} /10
+          </div>
+        </span>
+        <Divider>{props.internetAccess[name]}</Divider>
+        <span className="progress">
+          <div
+            className="progress-bar bg-info"
+            role="progress"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            style={{
+              width: `${Math.ceil(props.internetAccess[score]) * 10}%`
+            }}
+          >
+            {Math.ceil(props.internetAccess[score])} /10
+          </div>
+        </span>
+        <Divider>{props.leisureAndCulture[name]}</Divider>
+        <span className="progress">
+          <div
+            className="progress-bar bg-info"
+            role="progress"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            style={{
+              width: `${Math.ceil(props.leisureAndCulture[score]) * 10}%`
+            }}
+          >
+            {Math.ceil(props.leisureAndCulture[score])} /10
+          </div>
+        </span>
       </div>
     );
   } else if (props.cityName !== undefined && props.housing === undefined) {
@@ -31,8 +119,8 @@ export const City = props => {
       <div className="city">
         <h2>{props.cityName}</h2>
         <p>{props.fullName}</p>
-        <p>Population: {props.population}</p>
-        <p>No further details available...</p>
+        <Divider>Population</Divider>
+        <Statistic value={props.population} />
       </div>
     );
   } else {

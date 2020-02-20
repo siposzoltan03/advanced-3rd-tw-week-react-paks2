@@ -56,7 +56,7 @@ export function Cities() {
       </div>
     );
   } else {
-    return <div className="cities"></div>;
+    return <div className="cities" />;
   }
 }
 
