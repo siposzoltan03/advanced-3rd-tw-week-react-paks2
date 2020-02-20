@@ -8,9 +8,9 @@ function HomePage() {
   return (
     <div className="HomePage">
       <SearchBar />
-      <div className='container'>
-          <SideBar />
-          <Map />
+      <div className="container">
+        <SideBar />
+        <Map />
       </div>
     </div>
   );
