@@ -24,10 +24,16 @@ function SearchBar() {
       : { backgroundColor: "#717688" };
 
   const deleteCityOne = () => {
+    let cityTwoCopy = { ...cityTwo };
+    delete cityTwoCopy.compared;
+    setCityTwo(cityTwoCopy);
     setCityOne({});
     setCityUrl(null);
   };
   const deleteCityTwo = () => {
+    let cityOneCopy = { ...cityOne };
+    delete cityOneCopy.compared;
+    setCityOne(cityOneCopy);
     setCityTwo({});
     setCityUrl(null);
   };

@@ -2,15 +2,14 @@ import React, { useState } from "react";
 import { useSpring, animated } from "react-spring";
 import useMeasure from "./useMeasure";
 import "../style.css";
-import { CityProvider } from "../contexts/CityContext";
 import Cities from "../components/Cities";
 // import 'fontawesome';
 
 export function SideBar() {
-    const [open, toggle] = useState(false);
-    const [bind, {width}] = useMeasure();
-    const props = useSpring({width: open ? width : 20});
-    const mainProps = {width: open ? '50%' : '20px'};
+  const [open, toggle] = useState(false);
+  const [bind, { width }] = useMeasure();
+  const props = useSpring({ width: open ? width : 20 });
+  const mainProps = { width: open ? "50%" : "20px" };
 
   return (
     <div
@@ -31,7 +30,5 @@ export function SideBar() {
     return open ? "fa fa-chevron-left" : "fa fa-chevron-right";
   }
 }
-
-
 
 export default SideBar;

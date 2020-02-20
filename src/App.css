@@ -98,3 +98,23 @@ li:hover {
   left: 20px;
 
 }
+
+.container{
+  width: 100%;
+}
+
+@media (min-width: 992px){
+  .container {
+    max-width: 100%;
+    padding: 0;
+  }
+}
+
+#root > div > div > div.container > div.main > div > div.cities > div.city > div.ant-statistic > div > span > span{
+  font-size: 18px;
+}
+
+#root > div > div > div.container > div.main > div > div.cities > div.city > div:nth-child(3){
+  margin: 10px;
+}
+
