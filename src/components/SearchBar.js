@@ -58,7 +58,7 @@ function SearchBar() {
   return (
     <div className="search-bar">
       <img src={logo} alt="logo" className="logo" />
-      <div className="cities">
+      <div className="results">
         {" "}
         {Object.keys(cityOne).length === 0 && Object.keys(cityTwo).length === 0
           ? ""
