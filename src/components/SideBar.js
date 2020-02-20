@@ -24,10 +24,11 @@ export function SideBar() {
         <div className="arrow">
           <i className={arrowDirection()} />
         </div>
-      </animated.div>
-      <animated.div className="content">
         <Cities />
       </animated.div>
+      {/* <animated.div className="content">
+        <Cities />
+      </animated.div> */}
     </div>
   );
   function arrowDirection() {
