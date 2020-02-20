@@ -7,6 +7,6 @@ export default function useMeasure() {
   const [ro] = useState(
     () => new ResizeObserver(([entry]) => set(entry.contentRect))
   );
-  useEffect(() => (ro.observe(ref.current), ro.disconnect), []);
+  useEffect(() => (ro.observe(ref.current), ro.disconnect), [ro]);
   return [{ ref }, bounds];
 }

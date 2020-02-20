@@ -7,7 +7,6 @@ import Cities from "../components/Cities";
 // import 'fontawesome';
 
 export function SideBar() {
-  console.log("SIDEBAAAAAAAAAAAAAAAAAAAAAR");
   const [open, toggle] = useState(false);
   const [bind, { width }] = useMeasure();
   const props = useSpring({ width: open ? width : 20 });
@@ -26,14 +25,13 @@ export function SideBar() {
         </div>
         <Cities />
       </animated.div>
-      {/* <animated.div className="content">
-        <Cities />
-      </animated.div> */}
     </div>
   );
   function arrowDirection() {
     return open ? "fa fa-chevron-left" : "fa fa-chevron-right";
   }
 }
+
+
 
 export default SideBar;

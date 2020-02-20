@@ -1,6 +1,5 @@
 import React, { useEffect, useContext, useCallback, useState } from "react";
 import L from "leaflet";
-import SideBar from "./SideBar";
 import "../Map.css";
 
 import { getCity, getNearestCityUrl } from "../utility/GetData";
@@ -11,21 +10,53 @@ function Map() {
   const { city1, city2 } = useContext(CityContext);
   const [cityOne, setCityOne] = city1;
   const [cityTwo, setCityTwo] = city2;
+  const [layers, setLayers] = useState();
 
   const onMapClick = useCallback(
     e => {
       getNearestCityUrl(e.latlng.lat, e.latlng.lng)
         .then(cityUrl => getCity(cityUrl))
         .then(data =>
-          Object.keys(cityOne).length === 0
+          Object.keys(cityOne).length === 0 &&
+          data.geonameId !== cityTwo.geonameId
             ? setCityOne(data)
-            : Object.keys(cityTwo).length === 0
+            : Object.keys(cityTwo).length === 0 &&
+              cityOne.geonameId !== data.geonameId
             ? setCityTwo(data)
-            : alert("You've already choosen two cities to compare!")
-        );
+            : alert("You can only choose maximum two and different cities!")
+        )
+        .catch(() => alert("There is no city around here!"));
     },
     [cityOne, cityTwo, setCityOne, setCityTwo]
   );
+
+  const markCity = useCallback(
+    city => {
+      if (map && city && city.latitude) {
+        let marker = L.marker([city.latitude, city.longitude]);
+        layers.addLayer(marker);
+        marker
+          .bindPopup(
+            `${city.name}<br>lat: ${city.latitude}<br>lng: ${city.longitude}`
+          )
+          .openPopup();
+      }
+    },
+    [layers, map]
+  );
+
+  useEffect(() => {
+    setLayers(L.layerGroup());
+  }, []);
+
+  useEffect(() => {
+    if (layers) {
+      layers.clearLayers();
+      layers.addTo(map);
+    }
+    markCity(cityOne);
+    markCity(cityTwo);
+  }, [cityOne, cityTwo, layers, map, markCity]);
 
   useEffect(() => {
     if (map) {
@@ -54,11 +85,7 @@ function Map() {
     );
   }, []);
 
-  return (
-    <div id="map">
-      <SideBar />
-    </div>
-  );
+  return <div id="map"></div>;
 }
 
 export default Map;
