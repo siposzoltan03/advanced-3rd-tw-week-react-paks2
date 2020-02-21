@@ -1,5 +1,5 @@
-export const restoreCity = (city) => {
-  let cityCopy = {...city};
+export const restoreCity = city => {
+  let cityCopy = { ...city };
   if (cityCopy.housing !== undefined) {
     const greater = 2;
     cityCopy["housing"][greater] = undefined;

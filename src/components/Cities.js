@@ -20,7 +20,7 @@ export function Cities() {
     ) {
       let selectedCity;
 
-      (Object.keys(cityOne).length === 7 && cityOne.urbanArea !== undefined)
+      Object.keys(cityOne).length === 7 && cityOne.urbanArea !== undefined
         ? (selectedCity = cityOne)
         : (selectedCity = cityTwo);
 
